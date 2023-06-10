@@ -19,8 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     private var btnQrScanner: Button? = null
 
-    private lateinit var qrScan: IntentIntegrator
-
     // 스캐너 설정
     private val barcodeLauncher = registerForActivityResult(
         ScanContract()
@@ -34,7 +32,25 @@ class MainActivity : AppCompatActivity() {
             // 내용이 있다면
 
             // Toast 메세지 출력
-            Toast.makeText(this, "Scanned : " + result.contents, Toast.LENGTH_SHORT).show()
+            /*Toast.makeText(this, "Scanned : " + result.contents, Toast.LENGTH_SHORT).show()*/
+            val lottoResult = result.contents.substring(28)
+            val times = lottoResult.substring(0, 4) // 로또 회차
+            val num1 = lottoResult.substring(5, 17) // 첫번째
+            val num2 = lottoResult.substring(18, 30) // 두번째
+            val num3 = lottoResult.substring(31, 43) // 세번째
+            val num4 = lottoResult.substring(44, 56) // 네번째
+            val num5 = lottoResult.substring(57, 69) // 다섯번째
+            val numTR = lottoResult.substring(69) // TR Number
+
+            Toast.makeText(this, lottoResult, Toast.LENGTH_SHORT).show()
+            Log.e("gyoungTae", times)
+            Log.e("gyoungTae", num1)
+            Log.e("gyoungTae", num2)
+            Log.e("gyoungTae", num3)
+            Log.e("gyoungTae", num4)
+            Log.e("gyoungTae", num5)
+            Log.e("gyoungTae", numTR)
+
 
             // 결과 값 로그 출력
             Log.e("gyoungTae", result.contents.toString())
