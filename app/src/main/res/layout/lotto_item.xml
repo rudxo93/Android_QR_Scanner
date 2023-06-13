@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/lotto_num_1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/lotto_ball"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/lotto_num_2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/lotto_ball"
+            android:gravity="center"
+            android:text="20"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/lotto_num_3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/lotto_ball"
+            android:gravity="center"
+            android:text="30"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/lotto_num_4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/lotto_ball"
+            android:gravity="center"
+            android:text="40"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/lotto_num_5"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/lotto_ball"
+            android:gravity="center"
+            android:text="15"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

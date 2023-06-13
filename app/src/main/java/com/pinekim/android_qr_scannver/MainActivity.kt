@@ -6,10 +6,10 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import com.google.zxing.integration.android.IntentIntegrator
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
+import com.pinekim.android_qr_scannver.data.model.LottoModel
 import com.pinekim.android_qr_scannver.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private val binding get() =mBinding!!
 
     private var btnQrScanner: Button? = null
+    val lottoModel = LottoModel()
 
     // 스캐너 설정
     private val barcodeLauncher = registerForActivityResult(
@@ -34,23 +35,25 @@ class MainActivity : AppCompatActivity() {
             // Toast 메세지 출력
             /*Toast.makeText(this, "Scanned : " + result.contents, Toast.LENGTH_SHORT).show()*/
             val lottoResult = result.contents.substring(28)
-            val times = lottoResult.substring(0, 4) // 로또 회차
-            val num1 = lottoResult.substring(5, 17) // 첫번째
-            val num2 = lottoResult.substring(18, 30) // 두번째
-            val num3 = lottoResult.substring(31, 43) // 세번째
-            val num4 = lottoResult.substring(44, 56) // 네번째
-            val num5 = lottoResult.substring(57, 69) // 다섯번째
-            val numTR = lottoResult.substring(69) // TR Number
+
+
+            /*val times = lottoResult.substring(0, 4) // 로또 회차*/
+            lottoModel.tiems = lottoResult.substring(0, 4) // 로또 회차
+            lottoModel.lottoLineNum1 = lottoResult.substring(5, 17) // 첫번째
+            lottoModel.lottoLineNum2 = lottoResult.substring(18, 30) // 두번째
+            lottoModel.lottoLineNum3 =lottoResult.substring(31, 43) // 세번째
+            lottoModel.lottoLineNum4 = lottoResult.substring(44, 56) // 네번째
+            lottoModel.lottoLineNum5 = lottoResult.substring(57, 69) // 다섯번쨰
+            lottoModel.lottoNumTR = lottoResult.substring(69) // TR Number
 
             Toast.makeText(this, lottoResult, Toast.LENGTH_SHORT).show()
-            Log.e("gyoungTae", times)
-            Log.e("gyoungTae", num1)
-            Log.e("gyoungTae", num2)
-            Log.e("gyoungTae", num3)
-            Log.e("gyoungTae", num4)
-            Log.e("gyoungTae", num5)
-            Log.e("gyoungTae", numTR)
-
+            Log.e("gyoungTae", lottoModel.tiems.toString())
+            Log.e("gyoungTae", lottoModel.lottoLineNum1.toString())
+            Log.e("gyoungTae", lottoModel.lottoLineNum2.toString())
+            Log.e("gyoungTae", lottoModel.lottoLineNum3.toString())
+            Log.e("gyoungTae", lottoModel.lottoLineNum4.toString())
+            Log.e("gyoungTae", lottoModel.lottoLineNum5.toString())
+            Log.e("gyoungTae", lottoModel.lottoNumTR.toString())
 
             // 결과 값 로그 출력
             Log.e("gyoungTae", result.contents.toString())
@@ -72,6 +75,7 @@ class MainActivity : AppCompatActivity() {
         btnQrScanner = binding.btnQrScan
 
         initQrScanner()
+        initRecyclerViewSetting()
 
     }
 
@@ -79,5 +83,9 @@ class MainActivity : AppCompatActivity() {
         btnQrScanner?.setOnClickListener(View.OnClickListener {
             onScanBtnClicked()
         })
+    }
+
+    fun initRecyclerViewSetting() {
+
     }
 }
