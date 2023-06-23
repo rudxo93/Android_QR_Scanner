@@ -5,10 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
+import com.pinekim.android_qr_scannver.adapter.LottoRVAdapter
 import com.pinekim.android_qr_scannver.data.model.LottoModel
 import com.pinekim.android_qr_scannver.databinding.ActivityMainBinding
 
@@ -19,6 +23,8 @@ class MainActivity : AppCompatActivity() {
 
     private var btnQrScanner: Button? = null
     val lottoModel = LottoModel()
+
+    lateinit var rvAdapte: LottoRVAdapter
 
     // 스캐너 설정
     private val barcodeLauncher = registerForActivityResult(
@@ -46,6 +52,10 @@ class MainActivity : AppCompatActivity() {
             lottoModel.lottoLineNum5 = lottoResult.substring(57, 69) // 다섯번쨰
             lottoModel.lottoNumTR = lottoResult.substring(69) // TR Number
 
+           /* for(i: Int in ) {
+
+            }*/
+
             Toast.makeText(this, lottoResult, Toast.LENGTH_SHORT).show()
             Log.e("gyoungTae", lottoModel.tiems.toString())
             Log.e("gyoungTae", lottoModel.lottoLineNum1.toString())
@@ -54,9 +64,11 @@ class MainActivity : AppCompatActivity() {
             Log.e("gyoungTae", lottoModel.lottoLineNum4.toString())
             Log.e("gyoungTae", lottoModel.lottoLineNum5.toString())
             Log.e("gyoungTae", lottoModel.lottoNumTR.toString())
+            // 1번 라인 번호 따로 저장
+            Log.e("gyoungTae", lottoModel.lottoLineNum1!!.substring(0, 2))
 
             // 결과 값 로그 출력
-            Log.e("gyoungTae", result.contents.toString())
+            /*Log.e("gyoungTae", result.contents.toString())*/
         }
     }
     // Scan Click
@@ -86,6 +98,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initRecyclerViewSetting() {
+        val rv: RecyclerView = binding.lottoNumRv
+
+        rvAdapte = LottoRVAdapter(this)
+        rv.adapter = rvAdapte
+        rv.layoutManager =LinearLayoutManager(this)
 
     }
 }
